@@ -3,6 +3,7 @@ import os
 
 def main():
 
+    #set Database and cwd to script directory
     database_name = 'DDWRT_MONITOR'
     script_path = os.path.dirname(__file__)
 
@@ -35,14 +36,19 @@ def main():
     '''
 
     try:
+	#Connect to sqlite
         connection = sqlite3.connect(os.path.join(script_path, database_name))
 
+	#create cursor
         cursor = connection.cursor()
 
+	#execute Create Table Statment
         cursor.execute(DDWRT_MONITOR_TABLE)
 
+	#commit sql
         connection.commit()
 
+	#close Connection
         connection.close()
 
     except Exception as e:
